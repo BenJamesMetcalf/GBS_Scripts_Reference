@@ -63,7 +63,7 @@ my %Out_hash;
 $drug{ZOX} = "Flag,Flag,Flag";
 $drug{FOX} = "Flag,Flag,Flag";
 $drug{TAX} = "Flag,Flag,Flag";
-$drug{CZL} = "NA,NA,NA";
+$drug{CZL} = "Flag,Flag,Flag";
 $drug{CFT} = "Flag,Flag,Flag";
 $drug{CPT} = "Flag,Flag,Flag";
 $drug{AMP} = "Flag,Flag,Flag";
@@ -75,7 +75,7 @@ if ($pbp2X <= 5 && $pbp2X !~ /[A-Za-z]/) {
     $drug{TAX} = "<=,0.12,S";
     $drug{CFT} = "<=,0.12,S";
     $drug{CPT} = "<=,0.12,S";
-    $drug{CZL} = "NA,NA,NA";
+    $drug{CZL} = "<=,0.5,U";
     $drug{AMP} = "<=,0.25,S";
     $drug{PEN} = "<=,0.12,S";
     $drug{MER} = "<=,0.12,S";
@@ -191,38 +191,39 @@ $drug{COT} = "<=,0.5,U";
 if ($Res_hash{"OTHER"} eq "neg") {
     print "OTHER,$Res_hash{OTHER},".$drug{DAP}.",".$drug{VAN}.",".$drug{RIF}.",".$drug{CHL}.",".$drug{COT}."\n";
     $Out_hash{"OTHER"} = "$Res_hash{OTHER},$drug{DAP},$drug{VAN},$drug{RIF},$drug{CHL},$drug{COT}";
+#} else {
+#    my @Res_targs = split(':',$Res_hash{OTHER});
+#    my $isNew = "no";
+#    if ($Res_hash{OTHER} ne "ant(6)-Ia:Ant6-Ia_AGly:aph(3')-III:Aph3-III_AGly:Sat4A_Agly" && $Res_hash{OTHER} ne "aph(3')-III:Aph3-III_AGly:Sat4A_AGly" && $Res_hash{OTHER} ne "msr(D):MsrD_MLS") {
+#	foreach my $target (@Res_targs) {
+#	    if ($target !~ m/CAT|FOLA|FOLP|RPOB|VAN/i) {
+#		print "Found an ARGANNOT/RESFINDER target. Flag everything\n";
+#		$drug{DAP} = "Flag,Flag,Flag";
+#		$drug{VAN} = "Flag,Flag,Flag";
+#		$drug{RIF} = "Flag,Flag,Flag";
+#		$drug{CHL} = "Flag,Flag,Flag";
+#		$drug{SXT} = "Flag,Flag,Flag";
+#		$isNew = "yes";
+#		last;
+#	    } 
+#	}
+#    }
+#    if ($isNew eq "no") {
 } else {
     my @Res_targs = split(':',$Res_hash{OTHER});
-    my $isNew = "no";
-    if ($Res_hash{OTHER} ne "ant(6)-Ia:Ant6-Ia_AGly:aph(3')-III:Aph3-III_AGly:Sat4A_Agly" && $Res_hash{OTHER} ne "aph(3')-III:Aph3-III_AGly:Sat4A_AGly" && $Res_hash{OTHER} ne "msr(D):MsrD_MLS") {
-	foreach my $target (@Res_targs) {
-	    if ($target !~ m/CAT|FOLA|FOLP|RPOB|VAN/i) {
-		print "Found an ARGANNOT/RESFINDER target. Flag everything\n";
-		$drug{DAP} = "Flag,Flag,Flag";
-		$drug{VAN} = "Flag,Flag,Flag";
-		$drug{RIF} = "Flag,Flag,Flag";
-		$drug{CHL} = "Flag,Flag,Flag";
-		$drug{SXT} = "Flag,Flag,Flag";
-		$isNew = "yes";
-		last;
-	    } 
-	}
-    }
-    if ($isNew eq "no") {
-	foreach my $target (@Res_targs) {
-	    if ($target =~ m/CAT/i) {
-		print "Found CAT\n";
-		$drug{CHL} = ">=,16,R";
-	    } elsif ($target =~ m/FOLA/i || $target =~ m/FOLP/i) {
-		print "Found FOLA and/or FOLP\n";
-		$drug{COT} = "Flag,Flag,Flag";
-	    } elsif ($target =~ m/VAN/i) {
-		print "Found VAN\n";
-		$drug{VAN} = ">=,2,U";
-	    } elsif ($target =~ m/RPOB/i) {
-		print "Found RPOB\n";
-		$drug{RIF} = "Flag,Flag,Flag";
-	    }
+    foreach my $target (@Res_targs) {
+	if ($target =~ m/CAT/i) {
+	    print "Found CAT\n";
+	    $drug{CHL} = ">=,16,R";
+	} elsif ($target =~ m/FOLA/i || $target =~ m/FOLP/i) {
+	    print "Found FOLA and/or FOLP\n";
+	    $drug{COT} = "Flag,Flag,Flag";
+	} elsif ($target =~ m/VAN/i) {
+	    print "Found VAN\n";
+	    $drug{VAN} = ">=,2,U";
+	} elsif ($target =~ m/RPOB/i) {
+	    print "Found RPOB\n";
+	    $drug{RIF} = "Flag,Flag,Flag";
 	}
     }
     $Out_hash{"OTHER"} = "$Res_hash{OTHER},$drug{DAP},$drug{VAN},$drug{RIF},$drug{CHL},$drug{COT}";

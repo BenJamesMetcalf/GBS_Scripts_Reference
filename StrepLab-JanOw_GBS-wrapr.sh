@@ -102,7 +102,7 @@ fi
 batch_name=$(echo "$batch_dir" | awk -F"/" '{print $(NF-3)}')
 #printf "Sample_Name\temm_Type\temm_Seq\t%_identity\tmatch_length\n" >> "$out_analysis"/JanOw_"$batch_name"_emmType_results.txt
 #printf "Sample\tSerotype\tST\tadhP\tpheS\tatr\tglnA\tsdhA\tglcK\ttkt\tPBP_1A\tPBP_2X\tTET\tEC\tFQ\tOTHER\tALPH\tSRR\tPILI\tHVGA\n" >> "$out_analysis"/TABLE_GBS_"$batch_name"_Typing_Results.txt
-printf "Sample\tSerotype\tST\tadhP\tpheS\tatr\tglnA\tsdhA\tglcK\ttkt\tPBP_1A\tPBP_2B\tPBP_2X\tWGS_ZOX_SIGN\tWGS_ZOX\tWGS_ZOX_SIR\tWGS_FOX_SIGN\tWGS_FOX\tWGS_FOX_SIR\tWGS_TAX_SIGN\tWGS_TAX\tWGS_TAX_SIR\tWGS_CFT_SIGN\tWGS_CFT\tWGS_CFT_SIR\tWGS_CPT_SIGN\tWGS_CPT\tWGS_CPT_SIR\tWGS_CZL_SIGN\tWGS_CZL\tWGS_CZL_SIR\tWGS_AMP_SIGN\tWGS_AMP\tWGS_AMP_SIR\tWGS_PEN_SIGN\tWGS_PEN\tWGS_PEN_SIR\tWGS_MER_SIGN\tWGS_MER\tWGS_MER_SIR\tTET\tWGS_TET_SIGN\tWGS_TET\tWGS_TET_SIR\tEC\tWGS_ERY_SIGN\tWGS_ERY\tWGS_ERY_SIR\tWGS_CLI_SIGN\tWGS_CLI\tWGS_CLI_SIR\tWGS_LZO_SIGN\tWGS_LZO\tWGS_LZO_SIR\tWGS_SYN_SIGN\tWGS_SYN\tWGS_SYN_SIR\tWGS_ERYCLI\tFQ\tWGS_CIP_SIGN\tWGS_CIP\tWGS_CIP_SIR\tWGS_LFX_SIGN\tWGS_LFX\tWGS_LFX_SIR\tOther\tWGS_DAP_SIGN\tWGS_DAP\tWGS_DAP_SIR\tWGS_VAN_SIGN\tWGS_VAN\tWGS_VAN_SIR\tWGS_RIF_SIGN\tWGS_RIF\tWGS_RIF_SIR\tWGS_CHL_SIGN\tWGS_CHL\tWGS_CHL_SIR\tWGS_SXT_SIGN\tWGS_SXT\tWGS_SXT_SIR\tALPH\tSRR\tPili\tHVGA\tContig_num\tN50\tLongest_contig\tTotal_bases\tReadPair_1\tContig_path\n" >> "$out_analysis"/TABLE_GBS_"$batch_name"_Typing_Results.txt
+printf "Sample\tSerotype\tST\tadhP\tpheS\tatr\tglnA\tsdhA\tglcK\ttkt\tCC\tPBP_1A\tPBP_2B\tPBP_2X\tWGS_ZOX_SIGN\tWGS_ZOX\tWGS_ZOX_SIR\tWGS_FOX_SIGN\tWGS_FOX\tWGS_FOX_SIR\tWGS_TAX_SIGN\tWGS_TAX\tWGS_TAX_SIR\tWGS_CFT_SIGN\tWGS_CFT\tWGS_CFT_SIR\tWGS_CPT_SIGN\tWGS_CPT\tWGS_CPT_SIR\tWGS_CZL_SIGN\tWGS_CZL\tWGS_CZL_SIR\tWGS_AMP_SIGN\tWGS_AMP\tWGS_AMP_SIR\tWGS_PEN_SIGN\tWGS_PEN\tWGS_PEN_SIR\tWGS_MER_SIGN\tWGS_MER\tWGS_MER_SIR\tTET\tWGS_TET_SIGN\tWGS_TET\tWGS_TET_SIR\tEC\tWGS_ERY_SIGN\tWGS_ERY\tWGS_ERY_SIR\tWGS_CLI_SIGN\tWGS_CLI\tWGS_CLI_SIR\tWGS_LZO_SIGN\tWGS_LZO\tWGS_LZO_SIR\tWGS_SYN_SIGN\tWGS_SYN\tWGS_SYN_SIR\tWGS_ERYCLI\tFQ\tWGS_CIP_SIGN\tWGS_CIP\tWGS_CIP_SIR\tWGS_LFX_SIGN\tWGS_LFX\tWGS_LFX_SIR\tOther\tWGS_DAP_SIGN\tWGS_DAP\tWGS_DAP_SIR\tWGS_VAN_SIGN\tWGS_VAN\tWGS_VAN_SIR\tWGS_RIF_SIGN\tWGS_RIF\tWGS_RIF_SIR\tWGS_CHL_SIGN\tWGS_CHL\tWGS_CHL_SIR\tWGS_SXT_SIGN\tWGS_SXT\tWGS_SXT_SIR\tALPH\tSRR\tPili\tHVGA\tContig_num\tN50\tLongest_contig\tTotal_bases\tReadPair_1\tContig_path\n" >> "$out_analysis"/TABLE_GBS_"$batch_name"_Typing_Results2.txt
 #printf "Sample,MLST,Serotype,PBP1A,PBP2X,23S1,23S3,CAT,ERMB,ERMT,ERMTR,RPOB1,RPOB2,RPOB3,RPOB4,GYRA,LSAC,LSAE,MEF,PARC,LNUB,TETL,TETM,TETO,HVGA,PI1,PI2A1,PI2A2,PI2B,SRR1,SRR2,ALP1REF,ALP23REF,ALPHAREF,RIBREF\n" >> "$out_analysis"/BIN_GBS_"$batch_name"_Typing_Results.txt
 
 ###Will search thru every file in the batch directory and check if it matches the following regexs: _L.*_R1_001.fastq and _L.*_R2_001.fastq###
@@ -158,8 +158,7 @@ done
 
 ###Send the jobs out on the cluster with each sample running in parallel###
 #qsub -sync y -q dbd.q -t 1-$(cat $out_jobCntrl/job-control.txt | wc -l) -cwd -o "$out_qsub" -e "$out_qsub" ./StrepLab-JanOw_GBS-Typer.sh $out_jobCntrl
-#qsub -sync y -q dbd.q,short.q -t 1-$(cat $out_jobCntrl/job-control.txt | wc -l) -cwd -o "$out_qsub" -e "$out_qsub" -l h_vmem=32G,h_rt=2:00:00 -pe smp 8 ./StrepLab-JanOw_GBS-Typer.sh $out_jobCntrl
-qsub -sync y -q all.q,dbd.q -t 1-$(cat $out_jobCntrl/job-control.txt | wc -l) -cwd -o "$out_qsub" -e "$out_qsub" -l h_vmem=32G,h_rt=4:00:00 -pe smp 8 ./StrepLab-JanOw_GBS-Typer.sh $out_jobCntrl
+qsub -sync y -q dbd.q,short.q -t 1-$(cat $out_jobCntrl/job-control.txt | wc -l) -cwd -o "$out_qsub" -e "$out_qsub" -l h_vmem=32G,h_rt=2:00:00 -pe smp 8 ./StrepLab-JanOw_GBS-Typer.sh $out_jobCntrl
 
 ###Output the emm type/MLST/drug resistance data for this sample to it's results output file###
 while read -r line
@@ -167,7 +166,7 @@ do
     batch_name=$(echo $line | awk -F" " '{print $1}' | awk -F"/" '{print $(NF-4)}')
     final_outDir=$(echo $line | awk -F" " '{print $5}')
     final_result_Dir=$(echo $line | awk -F" " '{print $4}')
-    cat $final_outDir/TABLE_Isolate_Typing_results.txt >> $final_result_Dir/TABLE_GBS_"$batch_name"_Typing_Results.txt
+    cat $final_outDir/TABLE_Isolate_Typing_results.txt >> $final_result_Dir/TABLE_GBS_"$batch_name"_Typing_Results2.txt
     rm $final_outDir/TABLE_Isolate_Typing_results.txt
     cat $final_outDir/BIN_Isolate_Typing_results.txt >> $final_result_Dir/BIN_GBS_"$batch_name"_Typing_Results.txt
     if [[ -e $final_outDir/newPBP_allele_info.txt ]]
@@ -175,6 +174,10 @@ do
     	cat $final_outDir/newPBP_allele_info.txt >> $final_result_Dir/UPDATR_GBS_"$batch_name"_Typing_Results.txt
     fi
 done < $out_jobCntrl/job-control.txt
+
+final_result_Dir=$(head -n1 $out_jobCntrl/job-control.txt | awk -F" " '{print $4}')
+cut -d$'\t' -f61,62,63,68,69,70 --complement $final_result_Dir/TABLE_GBS_"$batch_name"_Typing_Results2.txt > $final_result_Dir/TABLE_GBS_"$batch_name"_Typing_Results.txt
+#rm $final_result_Dir/TABLE_GBS_"$batch_name"_Typing_Results2.txt
 
 #if [[ -e $final_result_Dir/UPDATR_GBS_"$batch_name"_Typing_Results.txt ]]
 #then

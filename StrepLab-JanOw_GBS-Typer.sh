@@ -9,28 +9,25 @@ read -a PARAM <<< $(/bin/sed -n ${SGE_TASK_ID}p $1/job-control.txt)
 
 ###Load Modules###
 #. /usr/share/Modules/init/bash
-#module load perl/5.38.2
-#module load bioperl/1.7.8
-#module load blast+/2.13.0
-#module load bedtools/2.17.0
-#module load freebayes/1.3.5
-#module load prodigal/2.6
-#module load cutadapt/4.6
+#module load perl/5.22.1
+#module load ncbi-blast+/2.2.29
+#module load BEDTools/2.17.0
+#module load freebayes/0.9.21
+#module load prodigal/2.60
+#module load cutadapt/1.8.3
 #module load srst2/0.1.7
-#module load samtools/0.1.18
 
+#module load --ignore_cache
 module load perl/5.38.2
 module load bioperl/1.7.8
 module load blast+/2.13.0
 module load bedtools/2.17.0
 module load freebayes/1.3.5
 module load prodigal/2.6
+#module load cutadapt/4.6
+#module load srst2/0.1.7
 module load samtools/0.1.18
 module load gcccore
-
-#Karen
-#export PERL5LIB=/scicomp/groups/OID/NCIRD/DBD/RDB/Strep_Lab/JanOw_Dependencies/perl_libs/
-#export PATH="/scicomp/groups/OID/NCIRD/DBD/RDB/Strep_Lab/JanOw_Dependencies:$PATH"
 
 ###This script is called for each job in the qsub array. The purpose of this code is to read in and parse a line of the job-control.txt file
 ###created by 'StrepLab-JanOw_GAS-wrapr.sh' and pass that information, as arguments, to other programs responsible for various parts of strain
@@ -41,7 +38,6 @@ readPair_2=${PARAM[1]}
 allDB_dir=${PARAM[2]}
 batch_out=${PARAM[3]}
 sampl_out=${PARAM[4]}
-#delete='true'
 delete='false'
 
 ###Start Doing Stuff###
@@ -73,6 +69,27 @@ module load srst2/0.1.7
 srst2 --samtools_args "\-A" --mlst_delimiter '_' --input_pe "$readPair_1" "$readPair_2" --output "$out_nameMLST" --save_scores --mlst_db "$allDB_dir/Streptococcus_agalactiae.fasta" --mlst_definitions "$allDB_dir/sagalactiae.txt" --min_coverage 99.999
 ###Check and extract new MLST alleles###
 MLST_allele_checkr.pl "$out_nameMLST"__mlst__Streptococcus_agalactiae__results.txt "$out_nameMLST"__*.Streptococcus_agalactiae.sorted.bam "$allDB_dir/Streptococcus_agalactiae.fasta"
+
+###Call CC###
+ST=$(cat ./MLST_*__mlst__Streptococcus_agalactiae__results.txt | awk -F"\t" '{print $2}' | tail -n1)
+CC="NA"
+if [[ "$ST" =~ ^-?[0-9]+$ ]];
+then
+    echo "ST exists."
+    CCmatch=$(awk -F"\t" -v val="$ST" '$1 == val {print $9}' $allDB_dir/GBS_CC_*.txt)
+    if [[ -n "$CCmatch" ]]
+    then
+        CC=$CCmatch
+    else
+        echo "CC doesn't exist"
+        CC="NA"
+    fi
+else
+    echo "ST doesn't exist."
+    CC="NA"
+fi
+echo "$just_name,$ST,$CC"
+echo "$just_name,$ST,$CC" > CC_output.txt
 
 ###Call GBS Serotype###
 GBS_Serotyper.pl -1 "$readPair_1" -2 "$readPair_2" -r "$allDB_dir/GBS_seroT_Gene-DB_Final.fasta" -n "$just_name"
@@ -124,6 +141,9 @@ do
     MLST_val=$(echo "$line" | awk -F" " '{print $2}')
     printf "$MLST_val," >> "$bin_out"
 done
+
+###CC OUTPUT###
+cat CC_output.txt | cut -d, -f3 | tr '\n' '\t' >> "$tabl_out"
 
 ###PBP_ID Output###
 justPBPs="NF"
@@ -207,15 +227,13 @@ fi
 
 
 ###Unload Modules###
-#module unload perl/5.38.2
-#module unload bioperl/1.7.8
-#module unload blast+/2.13.0
-#module unload bedtools/2.17.0
-#module unload freebayes/1.3.5
-#module unload prodigal/2.6
-#module unload cutadapt/4.6
+#module unload perl/5.22.1
+#module unload ncbi-blast+/2.2.29
+#module unload BEDTools/2.17.0
+#module unload freebayes/0.9.21
+#module unload prodigal/2.60
+#module unload cutadapt/1.8.3
 #module unload srst2/0.1.7
-#module unload samtools/0.1.18
 
 module unload perl/5.38.2
 module unload bioperl/1.7.8
@@ -223,6 +241,7 @@ module unload blast+/2.13.0
 module unload bedtools/2.17.0
 module unload freebayes/1.3.5
 module unload prodigal/2.6
+#module unload cutadapt/4.6
 module unload srst2/0.1.7
 module unload samtools/0.1.18
 module unload gcccore
