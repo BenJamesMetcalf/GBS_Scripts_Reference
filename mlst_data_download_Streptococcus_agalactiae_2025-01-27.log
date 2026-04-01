@@ -1,0 +1,33 @@
+definitions: profiles_csv
+None profiles
+sourced from: https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/schemes/1/profiles_csv
+
+locus adhP
+alleles_fasta
+Sourced from https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/loci/adhP/alleles_fasta
+
+locus pheS
+alleles_fasta
+Sourced from https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/loci/pheS/alleles_fasta
+
+locus atr
+alleles_fasta
+Sourced from https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/loci/atr/alleles_fasta
+
+locus glnA
+alleles_fasta
+Sourced from https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/loci/glnA/alleles_fasta
+
+locus sdhA
+alleles_fasta
+Sourced from https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/loci/sdhA/alleles_fasta
+
+locus glcK
+alleles_fasta
+Sourced from https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/loci/glcK/alleles_fasta
+
+locus tkt
+alleles_fasta
+Sourced from https://rest.pubmlst.org/db/pubmlst_sagalactiae_seqdef/loci/tkt/alleles_fasta
+
+all loci: Streptococcus_agalactiae.fasta

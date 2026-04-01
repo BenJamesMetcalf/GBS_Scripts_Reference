@@ -1,8 +1,11 @@
 #!/bin/bash -l
 
-. /usr/share/Modules/init/bash
-module load Python/2.7
-module load ncbi-blast+/2.2.29
+#. /usr/share/Modules/init/bash
+#module load Python/2.7
+#module load ncbi-blast+/2.2.29
+module load python/2.7.15
+module load blast+/2.13.0
+module load gcccore
 
 #Comment blah...#
 
@@ -213,5 +216,8 @@ do
 done < "$update_PBP"
 
 
-module unload Python/2.7
-module unload ncbi-blast+/2.2.29
+#module unload Python/2.7
+#module unload ncbi-blast+/2.2.29
+module unload python/2.7.15
+module unload blast+/2.13.0
+module unload gcccore
